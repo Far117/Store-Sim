@@ -1,13 +1,16 @@
 #include "item.h"
 #include <vector>
 
+using namespace std;
+
 static vector<item> items;
 
-item::item(string n, string c, float p)
+item::item(string n, string c, float p, float b)
 {
     name=n;
     category=c;
     price=p;
+    buyPrice=b;
 }
 
 item::~item()
@@ -34,5 +37,14 @@ void initItems(){
 }
 
 item addItem(string name){
+    ;
+}
 
+vector<item> getItems(){
+    return items;
+}
+
+void adjustItem(int id, float price){
+    items[id].price=price;
+    return;
 }

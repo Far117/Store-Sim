@@ -1,0 +1,29 @@
+Hiring
+Firing
+
+Customer Logic
+    wants and needs
+    can be attracted by good prices to something they didn't want or need
+    holiday special needs
+
+Employees
+    Janitors (Each janitor can clean certain amount of storage space)
+    Cashiers (Needed to work cash registers)
+    Guards (Deter theft)
+
+Bills
+Taxes
+
+Banking
+    Loans
+
+Factory
+    Produce items cheaper
+    Needs to buy raw materials
+
+Franchises
+    One franchise for every x popularity
+    Franchises can grow independantly
+    Their success depends on yours
+    They earn you $$$ depending on their size
+    They earn you x% of your popularity

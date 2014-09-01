@@ -2,11 +2,12 @@
 #define ITEM_H
 
 #include <iostream>
+#include <vector>
 
 class item
 {
     public:
-        item(string,string,float,float);
+        item(std::string,std::string,float,float);
         virtual ~item();
 
         std::string name;
@@ -17,5 +18,10 @@ class item
     protected:
     private:
 };
+
+void adjustItem(int, float);
+std::vector<item> getItems();
+void initItems();
+void addItem();
 
 #endif // ITEM_H

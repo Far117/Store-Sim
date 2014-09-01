@@ -11,5 +11,7 @@ float inputF(std::string);
 void pause(unsigned int);
 void clear_screen();
 void scroll();
+void make(std::string);
+bool exists(std::string);
 
 #endif // FUNCTIONS_H

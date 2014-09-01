@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
+#include <fstream>
 
 #include "functions.h"
 
@@ -96,6 +97,6 @@ void make(string name){
 }
 
 bool exists(string name){
-    ifstream check(name);
+    ifstream check(name.c_str());
     return check.good();
 }

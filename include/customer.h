@@ -2,6 +2,9 @@
 #define CUSTOMER_H
 
 #include <iostream>
+#include <vector>
+
+#include "item.h"
 
 class customer
 {
@@ -11,11 +14,15 @@ class customer
 
         void clean();
         void setname();
+        void setList();
+        void setup();
 
 
         float money;
         std::string name;
         int happiness;
+
+        std::vector<item> shoppingList;
 
     protected:
     private:
