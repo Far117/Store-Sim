@@ -14,11 +14,15 @@ class shop {
 
         void order(int,int);
         void adjust(int,float);
+        void adjust(std::string, float);
         bool sell(std::string);
+        bool has(std::string);
 
         float money=1000;
         int storage=100;
         int stock=0;
+        int score=10;
+
         int cashRegisters=1;
         int cashiers=0;
         int janitors=0;

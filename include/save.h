@@ -1,14 +1,15 @@
 #ifndef SAVE_H
 #define SAVE_H
 
+#include <vector>
 
-class save
-{
-    public:
-        save();
-        virtual ~save();
-    protected:
-    private:
-};
+#include "shop.h"
+#include "item.h"
 
+
+void save(shop);
+shop load();
+
+void saveInventory(shop);
+std::vector<item> loadInventory();
 #endif // SAVE_H

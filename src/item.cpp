@@ -48,3 +48,12 @@ void adjustItem(int id, float price){
     items[id].price=price;
     return;
 }
+
+void adjustItem(string name, float price){
+    for(int x=0;x<items.size();x++){
+        if(items[x].name==name){
+            items[x].price==price;
+            return;
+        }
+    }
+}

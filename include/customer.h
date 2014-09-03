@@ -16,6 +16,7 @@ class customer
         void setname();
         void setList();
         void setup();
+        bool wantsToBuy(item);
 
 
         float money;

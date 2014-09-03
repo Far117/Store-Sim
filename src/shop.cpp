@@ -42,6 +42,21 @@ void shop::adjust(int id, float newPrice){
     return;
 }
 
+void shop::adjust(string name, float newPrice){
+    vector<item> items=getItems();
+
+
+    adjustItem(name, newPrice);
+
+    for(int x=0;x<inventory.size();x++){
+        if(inventory[x].name==name){
+            inventory[x].price=newPrice;
+        }
+    }
+
+    return;
+}
+
 bool shop::sell(string name){
     for (int x=0;x<inventory.size();x++){
         if (name==inventory[x].name){
@@ -54,4 +69,12 @@ bool shop::sell(string name){
     }
 
     return false;
+}
+
+bool shop::has(string name){
+    for (int x=0;x<inventory.size();x++){
+        if (name==inventory[x].name){
+            return true;
+        }
+    }
 }

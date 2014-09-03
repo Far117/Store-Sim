@@ -54,3 +54,17 @@ void customer::setup(){
 
     clean();
 }
+
+bool customer::wantsToBuy(item thing){
+    float overPay=(thing.price-thing.buyPrice);
+    overPay/=thing.price;
+    overPay*=100;
+
+    int tolerance=rand()%90+11;
+    if((float)overPay>tolerance){
+        return false;
+    }else{
+        cout << name << " thought " << thing.name << " was too expensive." << endl;
+        return true;
+    }
+}

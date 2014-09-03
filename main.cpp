@@ -1,5 +1,5 @@
 #include <iostream>
-#include "time.h"
+#include <time.h>
 #include <cstdlib>
 
 #include "functions.h"
@@ -7,6 +7,7 @@
 #include "date.h"
 #include "item.h"
 #include "customer.h"
+#include "save.h"
 
 using namespace std;
 
@@ -15,8 +16,8 @@ static date calender;
 
 struct info {
     int patch=0;
-    float version=0.1;
-    string name="Alpha";
+    float version=0.2;
+    string name="Public Alpha";
 };
 
 //=================
@@ -26,6 +27,7 @@ void computer();
 void order();
 void hire();
 void adjust();
+void report();
 
 //=================
 void splash(){
@@ -36,6 +38,7 @@ void splash(){
 }
 
 void story(){
+    clear_screen();
     cout << "Work...";
     scroll();
     cout << "Lots of work...";
@@ -50,7 +53,7 @@ void story(){
     scroll();
     cout << "Your business, " << store.name << ", is completed...";
     scroll();
-    cout << "However, you only have $" << store.money << "left in your account!";
+    cout << "However, you only have $" << store.money << " left in your account!";
     scroll();
     cout << "And no stock whatsoever!!!";
     scroll();
@@ -74,6 +77,12 @@ void newgame(){
 void loop(){
     computer();
     clear_screen();
+    float todaysMoney=0;
+    int sold=0;
+    int possibleSold=0;
+    float possibleMoney=0;
+    int rejected=0;
+
     cout << "Beginning " << calender.getDate() << "..." << endl;
 
     int customersToday=(rand() % (store.cashRegisters*50))+1;
@@ -88,15 +97,39 @@ void loop(){
 
     for (int x=0;x<customers.size();x++){
         for(int z=0;z<customers[x].shoppingList.size();z++){
-            if (store.sell(customers[x].shoppingList[z].name)){
-                    customers[x].money-=customers[x].shoppingList[z].price;
-                    customers[x].shoppingList.erase(customers[x].shoppingList.begin()+z);
+            possibleSold++;
+            possibleMoney+=customers[x].shoppingList[z].price;
+            if (store.has(customers[x].shoppingList[z].name)){
+                if (customers[x].wantsToBuy(customers[x].shoppingList[z])){
+                    if (store.sell(customers[x].shoppingList[z].name)){
+                            todaysMoney+=customers[x].shoppingList[z].price;
+
+                            customers[x].money-=customers[x].shoppingList[z].price;
+                            cout << customers[x].name << " bought " << customers[x].shoppingList[z].name << endl;
+                            customers[x].shoppingList.erase(customers[x].shoppingList.begin()+z);
+
+                            sold++;
+                    }
+                } else {
+                    rejected++;
+                }
             }
         }
     }
 
-    cout << "\n\n\nEnd of " << calender.getDate();
+    cout << "\n\n\nEnd of " << calender.getDate() << endl;
     enter();
+    clear_screen();
+    cout << "Today's Report:\n\n" << endl;
+    cout << "Money Made: $" << todaysMoney << endl;
+    cout << "Customers Entered: " << customersToday << endl;
+    cout << "Items Sold: " << sold << endl;
+    cout << "Items Rejected: " << rejected << endl;
+    cout << "\nTotal Items Requested: " << possibleSold << endl;
+    cout << "Possible Money: $" << possibleMoney << "\n" << endl;
+
+    enter();
+
     calender.passDay();
     loop();
 }
@@ -109,12 +142,14 @@ void computer(){
     choice=inputS("\n|\n|\n|\nEnter a command: ");
 
     if (lower(choice)=="help" || lower(choice) == "?"){
-        cout << "Valid Operations: " << endl;
-        cout << "Order: Buy some new stock" << endl;
+        cout << "Valid Operations: \n|" << endl;
+        cout << "| Order: Buy some new stock" << endl;
         //cout << "Hire: Find some new employees" << endl;
         //cout << "Fire: Get rid of some employees" << endl;
-        cout << "Set: Adjust the pricing of your stock" << endl;
-        cout << "Start: Begins the next day" << endl;
+        cout << "| Set: Adjust the pricing of your stock" << endl;
+        cout << "| Start: Begins the next day" << endl;
+        cout << "| Report: View your records" << endl;
+        cout << "| Save: Save your game\n" << endl;
         enter();
     } else if (lower(choice)=="order"){
         order();
@@ -124,6 +159,11 @@ void computer(){
         adjust();
     } else if (lower(choice)=="start"){
         return;
+    } else if (lower(choice)=="report"){
+        report();
+    } else if (lower(choice)=="save"){
+        save(store);
+        enter();
     }
 
     computer();
@@ -197,6 +237,18 @@ void adjust(){
     return;
 }
 
+void report(){
+    clear_screen();
+
+    cout << "\t\t\t\t\t" << store.name << "(R):\n" << endl;
+    cout << "| Current Balance: $" << store.money << endl;
+    cout << "| Total Storage Space: " << store.stock << "/" << store.storage << endl;
+    cout << "| StoreScore (R): " << store.score << "\n" << endl;
+
+    enter();
+    return;
+}
+
 void init(){
     srand(time(NULL));
 
@@ -210,8 +262,17 @@ int main(){
     clear_screen();
 
     make("bin");
+    clear_screen();
     if (!exists("bin/store.sav")){
         newgame();
+    }else {
+        cout << "Load your old game or start a new one?" << endl;
+        if(lower(inputS(": "))=="new"){
+            newgame();
+        }else{
+            store=load();
+            loop();
+        }
     }
 
     return 0;

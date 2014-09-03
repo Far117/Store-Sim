@@ -20,6 +20,7 @@ class item
 };
 
 void adjustItem(int, float);
+void adjustItem(std::string,float);
 std::vector<item> getItems();
 void initItems();
 void addItem();

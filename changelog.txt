@@ -1,0 +1,24 @@
+Public Alpha 0.2:
+    Saving/Loading
+    Reports:
+        -End of Day stats:
+            -Money Earned
+            -Customers entered
+            -Rejected items (too expensive)
+            -Money lost (from rejected items/items you didn't have)
+        -Financing information
+            -Total money
+            -Stock/Storage
+            -StoreScore (not in use currently)
+    Slightly improved customer AI:
+        -Now will not pay more than double for what it cost you, and only 1% of them
+            will pay that. This makes the limit on profit 1%, with a lot of lost customers.
+            Balance profits/costs/satisfaction wisely
+
+Alpha 0.1:
+    Absolute basics:
+        -Buying/selling items
+        -Customers buy everything on their list that you have, no questions asked
+        -Adjusting prices of stock
+
+    No saving/loading and customers have a zombie AI
