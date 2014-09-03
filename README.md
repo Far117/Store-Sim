@@ -1,29 +1,21 @@
-# README #
+STORE SIM 
+=========
+######Updated (9/3/14)######
 
-This README would normally document whatever steps are necessary to get your application up and running.
+#Intro:#
 
-### What is this repository for? ###
+Store Sim (better title coming soon) is a game in which you manage a store. All aspects of managing a store will be covered, such as bills, realistic customer AI, and other random, interesting things.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+#Current Features:#
 
-### How do I get set up? ###
+Ordering Generic Stock
+Adjusting Prices
+Basic Customer AI*
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+*See below
 
-### Contribution guidelines ###
+#Planned Features:#
 
-* Writing tests
-* Code review
-* Other guidelines
+**Everything...**
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Such as taxes, bills, custom items, better customer AI (holiday shopping, price comparison, good store forgiveness etc.), sales, factory management (like adding another game), and a whole lot more
